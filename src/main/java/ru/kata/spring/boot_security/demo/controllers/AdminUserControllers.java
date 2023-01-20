@@ -14,12 +14,12 @@ import java.util.List;
 
 @Controller
 @RequestMapping(value = "/admin")
-public class AdminControllers {
+public class AdminUserControllers {
 
     private final PersonService personService;
     private final RoleService roleService;
 
-    public AdminControllers(PersonService personService, RoleService roleService) {
+    public AdminUserControllers(PersonService personService, RoleService roleService) {
         this.personService = personService;
         this.roleService = roleService;
     }

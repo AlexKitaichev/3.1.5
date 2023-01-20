@@ -1,5 +1,4 @@
-package ru.kata.spring.boot_security.demo.restControllers;
-
+package ru.kata.spring.boot_security.demo.controllers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,26 +7,26 @@ import org.springframework.web.bind.annotation.*;
 import ru.kata.spring.boot_security.demo.models.Person;
 import ru.kata.spring.boot_security.demo.services.PersonService;
 
-import javax.validation.Valid;
 import java.util.List;
 
+
 @RestController
-@RequestMapping("/api")
-public class RestConrtollers {
+@RequestMapping("/api/admin")
+public class AdminUserRestController {
 
     private final PersonService personService;
 
-    public RestConrtollers(PersonService personService) {
+    public AdminUserRestController(PersonService personService) {
         this.personService = personService;
     }
 
-    @GetMapping("/persons")
+    @GetMapping("/users")
     public ResponseEntity<List<Person>> showAllPersons() {
         List<Person> allPersons = personService.getAllPersons();
         return new ResponseEntity<>(allPersons, HttpStatus.OK);
     }
 
-    @GetMapping("/persons/{id}")
+    @GetMapping("/users/{id}")
     public ResponseEntity<Person> getPerson(@PathVariable Long id) {
         Person person = personService.getPersonById(id);
         if (person == null) {
@@ -36,13 +35,8 @@ public class RestConrtollers {
         return new ResponseEntity<>(person, HttpStatus.OK);
     }
 
-    @GetMapping("/principal")
-    public ResponseEntity<Person> personInfo(@AuthenticationPrincipal Person person) {
-        return new ResponseEntity<>(person, HttpStatus.OK);
-    }
 
-
-    @PostMapping("/persons")
+    @PostMapping("/users")
     public ResponseEntity<Person> addNewPerson(@RequestBody Person person) {
         if (person == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -51,7 +45,7 @@ public class RestConrtollers {
         return new ResponseEntity<>(person, HttpStatus.OK);
     }
 
-    @PatchMapping("/persons/{id}")
+    @PatchMapping("/users/{id}")
     public ResponseEntity<Person> updatePerson(@RequestBody Person person) {
         if (person == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -60,10 +54,12 @@ public class RestConrtollers {
         return new ResponseEntity<>(person, HttpStatus.OK);
     }
 
-    @DeleteMapping("/persons/{id}")
+    @DeleteMapping("/users/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public String deletePerson(@PathVariable Long id) {
         personService.deletePerson(id);
         return "Person with id =" + id + " was deleted";
     }
 }
+
+

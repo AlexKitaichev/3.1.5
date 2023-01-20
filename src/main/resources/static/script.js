@@ -1,4 +1,4 @@
-const personsFetchUrl = "http://localhost:8080/api/persons";
+const personsFetchUrl = "http://localhost:8080/api/admin/users";
 const table = $('#personsTable');
 findAll();
 function findAll() {

@@ -1,7 +1,7 @@
 Principal();
 
 function Principal() {
-    fetch("http://localhost:8080/api/principal")
+    fetch("http://localhost:8080/api/user")
         .then(res => res.json())
         .then(data => {
             $('#headerPersonName').append(data.login);

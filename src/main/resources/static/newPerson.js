@@ -1,5 +1,5 @@
 let formNew = document.forms["formNewPerson"];
-const newPersonsFetchUrl = "http://localhost:8080/api/persons";
+const newPersonsFetchUrl = "http://localhost:8080/api/admin/users";
 addUser();
 
 function addUser() {
